@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES Futures Premarket Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #4CAF50;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .header .date {
+            color: #888;
+            font-size: 1.1em;
+        }
+
+        .section {
+            background-color: #2d2d2d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .section h2 {
+            color: #4CAF50;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .time-badge {
+            background-color: #333;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: normal;
+        }
+
+        .subsection {
+            margin-bottom: 15px;
+        }
+
+        .subsection h3 {
+            color: #81C784;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            padding: 5px 0;
+            transition: background-color 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background-color: #333;
+            border-radius: 4px;
+            padding-left: 5px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 3px;
+            transform: scale(1.2);
+            accent-color: #4CAF50;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checklist-item.completed label {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .red-flags {
+            background-color: #3d2d2d;
+            border-left-color: #f44336;
+        }
+
+        .red-flags h2 {
+            color: #f44336;
+        }
+
+        .red-flags ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .red-flags li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .red-flags li:before {
+            content: "⚠";
+            color: #f44336;
+            position: absolute;
+            left: 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #333;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .reset-btn {
+            background-color: #333;
+            color: #e0e0e0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 20px;
+            transition: background-color 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            background-color: #444;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ES Futures Premarket Checklist</h1>
+        <div class="date" id="currentDate"></div>
+        <div class="progress-text">Progress: <span id="progressText">0/0 (0%)</span></div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Personal Preparation <span class="time-badge">5 min</span></h2>
+        <div class="checklist-item">
+            <input type="checkbox" id="prep1">
+            <label for="prep1">Complete morning routine, check emotional state</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="prep2">
+            <label for="prep2">Review yesterday's trades - key lessons learned</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="prep3">
+            <label for="prep3">Set daily intention: disciplined execution over profit chasing</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="prep4">
+            <label for="prep4">Quick breathing exercise or mental reset</label>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Market Environment <span class="time-badge">10 min</span></h2>
+        
+        <div class="subsection">
+            <h3>Global Context:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="global1">
+                <label for="global1">Overnight ES movement vs yesterday's close</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="global2">
+                <label for="global2">Asian and European market direction and momentum</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="global3">
+                <label for="global3">DXY and 10-year yield direction</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="global4">
+                <label for="global4">VIX level - current volatility regime</label>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h3>News & Events:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="news1">
+                <label for="news1">Economic calendar - key releases and times</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="news2">
+                <label for="news2">Fed officials speaking or policy updates</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="news3">
+                <label for="news3">Major geopolitical or corporate news</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="news4">
+                <label for="news4">Sector themes - what's leading/lagging today</label>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h3>Market Character:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="character1">
+                <label for="character1">Trending vs range-bound environment assessment</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="character2">
+                <label for="character2">Current price vs recent value areas</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="character3">
+                <label for="character3">Expected session volatility based on overnight action</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="character4">
+                <label for="character4">Market breadth and sentiment indicators</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Trading Framework <span class="time-badge">8 min</span></h2>
+        
+        <div class="subsection">
+            <h3>ML Level Analysis:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="ml1">
+                <label for="ml1">Review all ML levels for today's session</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="ml2">
+                <label for="ml2">Note level quality and spacing</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="ml3">
+                <label for="ml3">Identify confluences with round numbers or key areas</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="ml4">
+                <label for="ml4">Plan box placement around strongest levels</label>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h3>Session Planning:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="session1">
+                <label for="session1">Directional bias based on all analysis</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="session2">
+                <label for="session2">Key event times that could move markets</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="session3">
+                <label for="session3">Volatility expectations - aggressive or defensive approach</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="session4">
+                <label for="session4">Risk management - daily loss limit and position sizing</label>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h3>Execution Mindset:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="execution1">
+                <label for="execution1">Commit to trading only ML levels, avoid FOMO</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="execution2">
+                <label for="execution2">Focus on process over P&L</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="execution3">
+                <label for="execution3">Patience reminder - wait for price to come to levels</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="execution4">
+                <label for="execution4">Adaptability if market character changes</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Final Check <span class="time-badge">2 min</span></h2>
+        <div class="checklist-item">
+            <input type="checkbox" id="final1">
+            <label for="final1">Platform ready - ML levels loaded, charts clean</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="final2">
+            <label for="final2">Mental state - calm, confident, focused</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="final3">
+            <label for="final3">Clear understanding of today's market environment</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="final4">
+            <label for="final4">Risk parameters set and understood</label>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Opening Bell Focus</h2>
+        <div class="checklist-item">
+            <input type="checkbox" id="opening1">
+            <label for="opening1">Observe price reaction to ML levels in first 30 minutes</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="opening2">
+            <label for="opening2">Watch for trend establishment vs range formation</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="opening3">
+            <label for="opening3">Be patient - let market show which levels will hold</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="opening4">
+            <label for="opening4">Trust the process and your ML edge</label>
+        </div>
+    </div>
+
+    <div class="section red-flags">
+        <h2>Red Flags - Consider Sitting Out</h2>
+        <ul>
+            <li>Major pending news that could cause chaotic price action</li>
+            <li>Feeling emotional, unfocused, or mentally off</li>
+            <li>ML levels too clustered or unclear for good risk/reward</li>
+            <li>Extremely low volume or holiday conditions</li>
+            <li>Fighting yesterday's losses instead of focusing on today</li>
+        </ul>
+    </div>
+
+    <button class="reset-btn" onclick="resetChecklist()">Reset All Checkboxes</button>
+
+    <div class="footer">
+        <p><strong>Remember:</strong> Your ML levels handle the "where" - you handle the "when" and "how much"</p>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Get all checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+
+        // Load saved state from localStorage
+        function loadCheckboxState() {
+            checkboxes.forEach(checkbox => {
+                const saved = localStorage.getItem(checkbox.id);
+                if (saved === 'true') {
+                    checkbox.checked = true;
+                    checkbox.parentElement.classList.add('completed');
+                }
+            });
+            updateProgress();
+        }
+
+        // Save checkbox state to localStorage
+        function saveCheckboxState(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const total = checkboxes.length;
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const percentage = Math.round((checked / total) * 100);
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${checked}/${total} (${percentage}%)`;
+        }
+
+        // Add event listeners to checkboxes
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    this.parentElement.classList.add('completed');
+                } else {
+                    this.parentElement.classList.remove('completed');
+                }
+                saveCheckboxState(this);
+                updateProgress();
+            });
+        });
+
+        // Reset all checkboxes
+        function resetChecklist() {
+            if (confirm('Are you sure you want to reset all checkboxes?')) {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                    checkbox.parentElement.classList.remove('completed');
+                    localStorage.removeItem(checkbox.id);
+                });
+                updateProgress();
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCheckboxState();
+            
+            // Auto-reset at midnight
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(now.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            
+            const msUntilMidnight = tomorrow.getTime() - now.getTime();
+            setTimeout(() => {
+                resetChecklist();
+                // Set up daily reset
+                setInterval(resetChecklist, 24 * 60 * 60 * 1000);
+            }, msUntilMidnight);
+        });
+    </script>
+</body>
+</html>
