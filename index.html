@@ -102,6 +102,15 @@
             flex: 1;
         }
 
+        .checklist-description {
+            font-size: 0.85em;
+            color: #aaa;
+            margin-left: 25px;
+            margin-top: 2px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
         .checklist-item.completed label {
             text-decoration: line-through;
             color: #888;
@@ -236,18 +245,25 @@
                 <input type="checkbox" id="global1">
                 <label for="global1">Overnight ES movement vs yesterday's close</label>
             </div>
+            <div class="checklist-description">Look for gaps (up/down/flat), magnitude of move, and volume. Large gaps may fill, small gaps may extend.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="global2">
                 <label for="global2">Asian and European market direction and momentum</label>
             </div>
+            <div class="checklist-description">Risk-on (green across regions) vs risk-off (red/mixed). Strong directional moves often continue into US session.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="global3">
                 <label for="global3">DXY and 10-year yield direction</label>
             </div>
+            <div class="checklist-description">Rising DXY/yields = headwind for stocks. Falling = tailwind. Note magnitude of moves and trend changes.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="global4">
                 <label for="global4">VIX level - current volatility regime</label>
             </div>
+            <div class="checklist-description">Under 15 = low vol, 15-25 = normal, over 25 = high vol. Affects position sizing and strategy selection.</div>
         </div>
 
         <div class="subsection">
@@ -256,18 +272,25 @@
                 <input type="checkbox" id="news1">
                 <label for="news1">Economic calendar - key releases and times</label>
             </div>
+            <div class="checklist-description">Focus on high-impact events (CPI, NFP, Fed decisions). Note consensus vs actual for surprises that move markets.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="news2">
                 <label for="news2">Fed officials speaking or policy updates</label>
             </div>
+            <div class="checklist-description">Hawkish tone (rates higher) = bearish stocks. Dovish tone (rates lower/pause) = bullish stocks. Watch for policy shifts.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="news3">
                 <label for="news3">Major geopolitical or corporate news</label>
             </div>
+            <div class="checklist-description">Wars, elections, trade issues = risk-off. Major earnings beats/misses from large cap stocks affect overall sentiment.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="news4">
                 <label for="news4">Sector themes - what's leading/lagging today</label>
             </div>
+            <div class="checklist-description">Tech leading = growth/risk-on. Utilities/REITs leading = defensive/risk-off. Energy up = inflation concerns.</div>
         </div>
 
         <div class="subsection">
@@ -276,18 +299,25 @@
                 <input type="checkbox" id="character1">
                 <label for="character1">Trending vs range-bound environment assessment</label>
             </div>
+            <div class="checklist-description">Trending = momentum strategies work better. Range-bound = mean reversion/fade strategies preferred. Look at recent daily structure.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="character2">
                 <label for="character2">Current price vs recent value areas</label>
             </div>
+            <div class="checklist-description">Price in value = balanced/range-bound likely. Price outside value = trending/imbalanced conditions possible.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="character3">
                 <label for="character3">Expected session volatility based on overnight action</label>
             </div>
+            <div class="checklist-description">Large overnight moves often lead to quieter days. Small overnight moves may lead to bigger intraday ranges.</div>
+            
             <div class="checklist-item">
                 <input type="checkbox" id="character4">
                 <label for="character4">Market breadth and sentiment indicators</label>
             </div>
+            <div class="checklist-description">Advance/decline ratios, new highs/lows, put/call ratios. Divergences between price and breadth signal potential reversals.</div>
         </div>
     </div>
 
